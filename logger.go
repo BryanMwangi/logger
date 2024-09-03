@@ -1,4 +1,4 @@
-package Logger
+package logger
 
 import (
 	"fmt"
@@ -74,7 +74,7 @@ func (l *Logger) openExistingOrNew() error {
 	filename := l.Filename
 	_, err := os.OpenFile(filename, os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0644)
 	if err != nil {
-		return fmt.Errorf(err.Error())
+		return fmt.Errorf(err.Error() + " in logger.openExistingOrNew")
 	}
 	info, err := os.Stat(filename)
 	if os.IsNotExist(err) {
@@ -95,7 +95,7 @@ func (l *Logger) openNew() error {
 	filename := l.Filename
 	_, err := os.OpenFile(filename, os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0644)
 	if err != nil {
-		return fmt.Errorf(err.Error())
+		return fmt.Errorf(err.Error() + " in logger.openNew")
 	}
 	return nil
 }
